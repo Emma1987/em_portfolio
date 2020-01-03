@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Emmanuelle Mercadal{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script src="https://use.fontawesome.com/b1a2104cde.js"></script>
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - Emmanuelle's P{% endblock %}
+{% block body %}
+    <!-- BACKGROUND IMAGE -->
+    <div class="background_home_image"></div>
+
+    <!-- CONTENT -->
+    <div id="home_xs_content">
+        {% for message in app.session.flashbag.get('success') %}
+            <div class="alert alert-success pb-0" role="alert">
+                <p class="text-center">{{ message }}</p>
+            </div>
+        {% endfor %}
+
+        <div id="introduction" class="pb-3">
+            <p class="text-center">
+                <span class="php_code">$developpeuse->getName();</span>
+                <span class="output_code">Affiche Emmanuelle</span>
+            </p>
+            <p class="content_m_40">
+                <span class="twig_function">for attribut in attributs</span><br/>
+                <span class="twig_var">drole</span><br/>
+                <span class="twig_var">superDrole</span><span class="output_code">Si si, j'insiste</span><br/>
+                <span class="twig_var">motivee</span><br/>
+                <span class="twig_var">superMotivee</span><span class="output_code">Là aussi, j'insiste</span><br/>
+                <span class="twig_function">endfor</span>
+            </p>
+            <p class="text-center mt-2">Et sinon, dans la vraie vie, je mélange pas l'affichage PHP et l'affichage Twig <i class="fa fa-smile-o" aria-hidden="true"></i></p>
+        </div>
+
+        <section id="portfolio">
+            <div class="col-sm-12 text-center">
+                <h2>Dernières réalisations</h2>
+                <hr class="hr_star">
+            </div>
+            <div class="card-deck">
+                {% for post in posts %}
+                    <div class="card">
+                        {% if post.images is defined and post.images is not empty %}
+                            {% set thumbName = 'uploads/thumb-' ~ post.slug ~ '.png' %}
+                            <img class="img_card" src="#" alt="Image {{ post.title }}" />
+                        {% else %}
+                            <img class="card-img-top" src="{{ asset('images/Accueil.jpg') }}" alt="Image du projet">
+                        {% endif %}
+                        <div class="card-body">
+                            <p class="text-left">{{ post.resume }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="card text-center">
+                    <p class="text-center mt-5">Voir tous<br/> les projets</p>
+                    <a href="#"> <i class="fa fa-3x fa-plus-circle mt-3" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT
+        ============================================================ -->
+        <section id="contact">
+            <div class="text-center">
+                <h2>Contactez-moi</h2>
+                <hr class="hr_star">
+            </div>
+            <div class="message_form mb-5">
+                {{ form_start(contactForm) }}
+                <div class="list-group-item mb-2">
+                    <div class="form-group">
+                        {{ form_label(contactForm.firstName) }}
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
+                            </div>
+                            {{ form_widget(contactForm.firstName) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(contactForm.lastName) }}
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
+                            </div>
+                            {{ form_widget(contactForm.lastName) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(contactForm.email) }}
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-at"></i></span>
+                            </div>
+                            {{ form_widget(contactForm.email) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(contactForm.message) }}
+                        <div class="input-group">
+                            {{ form_widget(contactForm.message) }}
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary w-100" value="Envoyer" />
+                </div>
+                {{ form_end(contactForm) }}
+            </div>
+        </section>
+
+        <!-- FOOTER
+        ============================================================ -->
+        <footer class="text-center">
+            <h3 class="text-uppercase pb-3">Restons en contact</h3>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="https://www.linkedin.com/in/emmanuelle-mercadal/" target="_blank" class="btn btn-outline-light btn-social text-center rounded-circle">
+                        <i class="fa fa-fw fa-linkedin"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="https://github.com/Emma1987" target="_blank" class="btn btn-outline-light btn-social text-center rounded-circle">
+                        <i class="fa fa-fw fa-github-alt"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="https://twitter.com/EmmanuelleM9" target="_blank" class="btn btn-outline-light btn-social text-center rounded-circle"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" class="btn btn-outline-light btn-social text-center rounded-circle">
+                        <i class="fa fa-fw fa-skype"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="#" target="_blank" class="btn btn-outline-light btn-social text-center rounded-circle">CV</a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+{% endblock %}

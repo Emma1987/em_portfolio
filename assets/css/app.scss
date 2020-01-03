@@ -1,0 +1,79 @@
+@import "~bootstrap/scss/bootstrap";
+
+$color_darkgrey: #2c3e50;
+$color_lightgrey: #8c8c8c;
+
+$primary_color: #18bc9c;
+$primary_focus_color: #128f76;
+
+body {
+  margin: 0;
+  color: $color_darkgrey;
+
+  a {
+    color: $primary_color;
+
+    &:focus, &:hover, a {
+      color: $primary_focus_color;
+    }
+
+    &.btn-social {
+      width: 3rem;
+      height: 3rem;
+      font-size: 1rem;
+      line-height: 2rem;
+      border-width: 2px;
+
+      &:hover {
+        background-color: $primary_color;
+      }
+    }
+  }
+
+  p, a.btn {
+    font-size: 16px;
+    text-align: justify;
+  }
+
+  h2 {
+    font-size: 30px;
+    margin-top: 75px;
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  hr.hr_star {
+    max-width: 15rem;
+    padding: 0;
+    text-align: center;
+    border: none;
+    border-top: solid .25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-color: $color_darkgrey;
+
+    &::after {
+      position: relative;
+      top: -.8em;
+      display: inline-block;
+      padding: 0 .25em;
+      content: '\f005';
+      font-family: 'FontAwesome';
+      font-size: 2em;
+      color: #2c3e50;
+      background-color: #fff;
+    }
+  }
+
+  .btn.btn-primary {
+    background-color: $primary_color;
+    border-color: $primary_color;
+
+    &:focus, &:hover {
+      background-color: $primary_focus_color;
+      border-color: $primary_focus_color;
+    }
+  }
+}
