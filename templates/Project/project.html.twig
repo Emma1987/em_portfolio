@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ project.title }}{% endblock %}
+{% block body %}
+    <div class="container content_container" id="project">
+        <h2 class="text-center">{{ project.title|upper }}</h2>
+        <hr class="hr_star">
+
+        <!-- BUTTON -->
+        <div class="text-center pt-4">
+            <a href="{{ path('projects') }}" class="btn btn-light text-center">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i> Retour
+            </a>
+        </div>
+
+        <div class="single_post">
+            <!-- POST -->
+            <div class="pt-4 pb-4">
+                {{ project.content|raw }}
+            </div>
+
+            <!-- CATEGORIES -->
+            <div class="pt-4 pb-4">
+                {% if project.categories is defined and project.categories is not empty %}
+                    <h2 class="text-center pb-4">Technologies utilisées</h2>
+                    <div class="text-center pb-4">
+                        {% for category in project.categories %}
+                            <div class="category_thumb">
+                                {% set name = 'images/categories/' ~ category.name ~ '.png' %}
+                                <img src="{{ asset(name) }}" alt="{{ category.name }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- IMAGE -->
+            {% if project.images is defined and project.images is not empty %}
+                {% for image in project.images %}
+                    <div class="single_post_image text-center mb-4">
+                        <a data-toggle="modal" data-target="#viewImage{{ image.id }}">
+                            <img src="{{ asset(image.url) }}" alt="Image {{ project.title }}" />
+                        </a>
+                    </div>
+                    <div class="modal fade" id="viewImage{{ image.id }}" role="dialog">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <img src="{{ asset(image.url) }}" alt="Image {{ project.title }}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <!-- BUTTON -->
+        <div class="text-center">
+            <a href="{{ path('projects') }}" class="btn btn-light text-center">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i> Retour
+            </a>
+        </div>
+    </div>
+{% endblock %}

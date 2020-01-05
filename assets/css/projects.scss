@@ -1,0 +1,60 @@
+#portfolio {
+  .card-deck {
+    width: 70%;
+    margin: auto;
+
+    .card.list_posts {
+      min-width: 30%;
+      margin: 20px 10px;
+      border: none;
+
+      img {
+        width: 100%;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .portfolio-item {
+    overflow: hidden;
+
+    .portfolio-caption {
+      -webkit-transition: all ease .5s;
+      -moz-transition: all ease .5s;
+      transition: all ease .5s;
+      opacity: 0;
+      background-color: rgba(24, 188, 156, .9);
+
+      &:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+#project {
+  .single_post {
+    padding: 20px;
+    width: 60%;
+    margin: 20px auto;
+
+    .category_thumb {
+      width: 80px;
+      height: 80px;
+      display: inline-block;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .single_post_image {
+      width: 700px;
+      height: 500px;
+      margin: auto;
+      overflow: scroll;
+      border-bottom: #e3e4e5 2px solid;
+    }
+  }
+}

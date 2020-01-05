@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes projets{% endblock %}
+{% block body %}
+    <section class="container content_container" id="portfolio">
+
+        <h1 class="text-center">Mes projets</h1>
+        <hr class="hr_star">
+
+        {#<div class="searchForm mb-3 float-right">
+            {{ form_start(searchForm) }}
+            <div class="row">
+                {{ form_widget(searchForm.category, {'attr': {'class': 'offset-sm-1 col-sm-3 col-xs-7'}}) }}
+                <input type="submit" class="btn btn-light w-100 col-2 ml-2" id="validSearchForm" value="Appliquer">
+                <a class="btn btn-light w-100 col-2 ml-2 text-center" id="resetSearchForm" href="{{ path('front_all_posts') }}">Réinitialiser</a>
+            </div>
+            {{ form_rest(searchForm) }}
+            {{ form_end(searchForm) }}
+        </div>#}
+
+        <div class="card-deck">
+            {% for project in projects %}
+                <div class="card list_posts">
+                    <a class="portfolio-item d-block mx-auto" data-toggle="modal" id="post_modal" data-target="#view_project_{{ project.id }}">
+                        <div class="portfolio-caption d-flex position-absolute h-100 w-100">
+                            <div class="portfolio-content my-auto w-100 text-center text-white">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        {% if project.images is defined and project.images is not empty %}
+                            {% set thumbName = 'uploads/thumb-' ~ project.slug ~ '.png' %}
+                            <img class="imgCard" src="{{ asset(thumbName) }}" alt="Image {{ project.title }}" />
+                        {% else %}
+                            <img class="card-img-top" src="{{ asset('images/Accueil.jpg') }}" alt="Image du projet">
+                        {% endif %}
+                    </a>
+                    <!-- MODAL -->
+                    <div class="modal fade" id="view_project_{{ project.id }}" role="dialog">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content text-center">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h2 class="text-uppercase text-center mb-0">
+                                        <a href="{{ path('project', {'slug': project.slug}) }}">{{ project.title }}</a>
+                                    </h2>
+                                    <hr class="hr_star mb-5" style="font-size: 12px">
+                                    <h3 class="font-weight-bold">Description</h3>
+                                    <p class="text-center">{{ project.resume|raw }}</p>
+                                    <h3 class="font-weight-bold">Technologies / Outils utilisés</h3>
+                                    <p class="text-center">
+                                        {% for skill in project.categories %}
+                                            <span>{{ skill.name }}</span><br>
+                                        {% endfor  %}
+                                    </p>
+                                    <a href="{{ path('project', {'slug': project.slug}) }}" class="btn btn-light text-center">
+                                        <i class="fa fa-arrow-circle-o-right mr-1" aria-hidden="true"></i> Voir
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
