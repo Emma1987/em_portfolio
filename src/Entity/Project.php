@@ -58,10 +58,17 @@ class Project
      */
     private $images;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $onTheTop;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->images = new ArrayCollection();
+
+        $this->onTheTop = 0;
     }
 
     public function getId(): ?int
@@ -194,6 +201,18 @@ class Project
                 $image->setProject(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOnTheTop(): ?bool
+    {
+        return $this->onTheTop;
+    }
+
+    public function setOnTheTop(bool $onTheTop): self
+    {
+        $this->onTheTop = $onTheTop;
 
         return $this;
     }

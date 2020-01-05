@@ -15,11 +15,11 @@ class HomePageController extends AbstractController
      */
     public function index(EntityManagerInterface $em)
     {
-        $posts = $em->getRepository(Project::class)->findAll();
+        $projects = $em->getRepository(Project::class)->findBy([], ['onTheTop' => 'DESC', 'publishedAt' => 'DESC'], 5);
         $contactForm = $this->createForm(ContactType::class);
 
         return $this->render('Home/home_page.html.twig', [
-            'posts' => $posts,
+            'projects' => $projects,
             'contactForm' => $contactForm->createView(),
         ]);
     }

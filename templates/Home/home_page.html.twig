@@ -35,16 +35,16 @@
                 <hr class="hr_star">
             </div>
             <div class="card-deck">
-                {% for post in posts %}
+                {% for project in projects %}
                     <div class="card">
-                        {% if post.images is defined and post.images is not empty %}
-                            {% set thumbName = 'images/projects/thumb-' ~ post.slug ~ '.png' %}
-                            <img class="img_card" src="{{ asset(thumbName) }}" alt="Image {{ post.title }}" />
+                        {% if project.images is defined and project.images is not empty %}
+                            {% set thumbName = 'images/projects/thumb-' ~ project.slug ~ '.png' %}
+                            <img class="img_card" src="{{ asset(thumbName) }}" alt="Image {{ project.title }}" />
                         {% else %}
                             <img class="card-img-top" src="{{ asset('images/Accueil.jpg') }}" alt="Image du projet">
                         {% endif %}
                         <div class="card-body">
-                            <p class="text-left">{{ post.resume|raw }}</p>
+                            <p class="text-left">{{ project.resume|raw }}</p>
                         </div>
                     </div>
                 {% endfor %}
