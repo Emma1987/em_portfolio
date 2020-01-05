@@ -34,8 +34,8 @@
                     <div class="navbar_links">
                         <ul class="d-flex flex-row">
                             <li><a href="#">Projets</a></li>
-                            <li><a href="#">A propos</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="{{ path('about_page') }}">A propos</a></li>
+                            <li><a href="{{ path('contact_page') }}">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
         <div id="copyright" class="text-white">
             <div class="d-flex justify-content-between p-0 w-100">
                 <div class="pl-4"><p class="pt-1">Tous droits réservés &copy; 2020 - Emmanuelle Mercadal</p></div>
-                <div><p class="pt-1 pr-4"><a href="">Mentions légales</a></p></div>
+                <div><p class="pt-1 pr-4"><a href="{{ path('mentions_page') }}">Mentions légales</a></p></div>
             </div>
         </div>
 

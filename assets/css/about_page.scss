@@ -1,0 +1,29 @@
+.background_contact_image {
+  margin:0;
+  background: url('../../public/images/Contact.jpg') no-repeat center;
+  height: 800px;
+  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+  background-size: cover; /* version standardisée */
+}
+
+#about_message_page, #contact_message_page {
+  position: absolute;
+  left: 80px;
+  width: 40%;
+
+  h3 {
+    color: black;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+#about_message_page {
+  top: 220px;
+}
+
+#contact_message_page {
+  top: 250px;
+}

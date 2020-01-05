@@ -1,18 +1,21 @@
-@import 'app.scss';
+@import '_variables.scss';
 
 .background_home_image {
   background: url('../../public/images/Accueil.jpg') no-repeat center;
   height: 700px;
   -webkit-background-size: cover; /* pour anciens Chrome et Safari */
   background-size: cover; /* version standardisée */
-  color: black;
-  font-size: 20px;
 }
 
 #home_xs_content {
+  #introduction, #portfolio, #contact {
+    margin-bottom: 80px;
+  }
+
   div#introduction {
     width: 60%;
     margin: 20px auto;
+    margin-bottom: 80px;
     padding: 30px;
     border: #e0e2e5 1px solid;
 
