@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         {% if project.images is defined and project.images is not empty %}
-                            {% set thumbName = 'uploads/thumb-' ~ project.slug ~ '.png' %}
+                            {% set thumbName = 'images/projects/thumb-' ~ project.slug ~ '.png' %}
                             <img class="imgCard" src="{{ asset(thumbName) }}" alt="Image {{ project.title }}" />
                         {% else %}
                             <img class="card-img-top" src="{{ asset('images/Accueil.jpg') }}" alt="Image du projet">

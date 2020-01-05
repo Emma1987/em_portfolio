@@ -38,13 +38,13 @@
                 {% for post in posts %}
                     <div class="card">
                         {% if post.images is defined and post.images is not empty %}
-                            {% set thumbName = 'uploads/thumb-' ~ post.slug ~ '.png' %}
-                            <img class="img_card" src="#" alt="Image {{ post.title }}" />
+                            {% set thumbName = 'images/projects/thumb-' ~ post.slug ~ '.png' %}
+                            <img class="img_card" src="{{ asset(thumbName) }}" alt="Image {{ post.title }}" />
                         {% else %}
                             <img class="card-img-top" src="{{ asset('images/Accueil.jpg') }}" alt="Image du projet">
                         {% endif %}
                         <div class="card-body">
-                            <p class="text-left">{{ post.resume }}</p>
+                            <p class="text-left">{{ post.resume|raw }}</p>
                         </div>
                     </div>
                 {% endfor %}

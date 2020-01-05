@@ -38,11 +38,11 @@
             {% if project.images is defined and project.images is not empty %}
                 {% for image in project.images %}
                     <div class="single_post_image text-center mb-4">
-                        <a data-toggle="modal" data-target="#viewImage{{ image.id }}">
+                        <a data-toggle="modal" data-target="#view_image_{{ image.id }}">
                             <img src="{{ asset(image.url) }}" alt="Image {{ project.title }}" />
                         </a>
                     </div>
-                    <div class="modal fade" id="viewImage{{ image.id }}" role="dialog">
+                    <div class="modal fade" id="view_image_{{ image.id }}" role="dialog">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-body">
