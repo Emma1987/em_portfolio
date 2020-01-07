@@ -8,6 +8,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Email;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ContactType extends AbstractType
 {
@@ -15,27 +18,22 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class, [
-                'label' => 'Prénom',
-                'attr' => [
-                    'class' => 'form-control form-control-sm'
-                ]
+                'label'          => 'Prénom',
+                'attr'           => ['class' => 'form-control form-control-sm'],
+                'constraints'    => [new NotBlank()],
             ])
             ->add('lastName', TextType::class, [
-                'label' => 'Nom',
-                'attr' => [
-                    'class' => 'form-control form-control-sm'
-                ]
+                'label'          => 'Nom',
+                'attr'           => ['class' => 'form-control form-control-sm'],
+                'constraints'    => [new NotBlank()],
             ])
             ->add('email', EmailType::class, [
-                'attr' => [
-                    'class' => 'form-control form-control-sm'
-                ]
+                'attr'           => ['class' => 'form-control form-control-sm'],
+                'constraints'    => [new NotBlank(), new Email()],
             ])
             ->add('message', TextareaType::class, [
-                'attr' => [
-                    'class' => 'form-control form-control-sm',
-                    'rows' => 5,
-                ],
+                'attr'           => ['class' => 'form-control form-control-sm', 'rows' => 5],
+                'constraints'    => [new NotBlank(), new Length(['min' => 10])],
             ])
         ;
     }
