@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Project;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * @method Project|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,19 @@ class ProjectRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Project::class);
+    }
+
+    /**
+     * @return Project[]
+     */
+    public function getProjectsWithCategories()
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.categories', 'c')
+            ->leftJoin('p.images', 'i')
+            ->select('p, c, i')
+            ->getQuery()
+            ->getResult();
     }
 
     // /**

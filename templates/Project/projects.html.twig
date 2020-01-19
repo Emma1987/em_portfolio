@@ -7,21 +7,26 @@
         <h1 class="text-center">Mes projets</h1>
         <hr class="hr_star">
 
-        {#<div class="searchForm mb-3 float-right">
-            {{ form_start(searchForm) }}
-            <div class="row">
-                {{ form_widget(searchForm.category, {'attr': {'class': 'offset-sm-1 col-sm-3 col-xs-7'}}) }}
-                <input type="submit" class="btn btn-light w-100 col-2 ml-2" id="validSearchForm" value="Appliquer">
-                <a class="btn btn-light w-100 col-2 ml-2 text-center" id="resetSearchForm" href="{{ path('front_all_posts') }}">Réinitialiser</a>
+        <div class="search_filters">
+            <p class="text-right mb-0 mr-1">Filtrer par technologie :</p>
+            <div class="technologies d-flex flex-row justify-content-end">
+                <span class="btn btn-sm btn-light m-1 all_technologies_button selected">
+                    <span class="d-inline-block w-100 h-100 pt-1">All</span>
+                </span>
+                {% for technology in technologies %}
+                    {% set name = 'images/categories/' ~ technology.name ~ '.png' %}
+                    <span class="btn btn-sm btn-light m-1 p-1 technology_button" id="{{ technology.name }}">
+                        <img src="{{ asset(name) }}" alt="{{ technology.name }}" />
+                    </span>
+                {% endfor %}
             </div>
-            {{ form_rest(searchForm) }}
-            {{ form_end(searchForm) }}
-        </div>#}
+
+        </div>
 
         <div class="card-deck">
             {% for project in projects %}
                 <div class="card list_posts">
-                    <a class="portfolio-item d-block mx-auto" data-toggle="modal" id="post_modal" data-target="#view_project_{{ project.id }}">
+                    <span class="portfolio-item d-block mx-auto" data-toggle="modal" id="post_modal" data-target="#view_project_{{ project.id }}" data-technos="{{ projectTechnologies[project.id]|join(',') }}">
                         <div class="portfolio-caption d-flex position-absolute h-100 w-100">
                             <div class="portfolio-content my-auto w-100 text-center text-white">
                                 <i class="fa fa-search-plus fa-3x"></i>
@@ -33,7 +38,7 @@
                         {% else %}
                             <img class="card-img-top" src="{{ asset('images/Accueil.jpg') }}" alt="Image du projet">
                         {% endif %}
-                    </a>
+                    </span>
                     <!-- MODAL -->
                     <div class="modal fade" id="view_project_{{ project.id }}" role="dialog">
                         <div class="modal-dialog modal-lg" role="document">
@@ -52,8 +57,8 @@
                                     <p class="text-center">{{ project.resume|raw }}</p>
                                     <h3 class="font-weight-bold">Technologies / Outils utilisés</h3>
                                     <p class="text-center">
-                                        {% for skill in project.categories %}
-                                            <span>{{ skill.name }}</span><br>
+                                        {% for skill in projectTechnologies[project.id] %}
+                                            <span>{{ skill }}</span><br>
                                         {% endfor  %}
                                     </p>
                                     <a href="{{ path('project', {'slug': project.slug}) }}" class="btn btn-light text-center">
@@ -67,4 +72,9 @@
             {% endfor %}
         </div>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('projects') }}
 {% endblock %}

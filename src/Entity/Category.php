@@ -28,6 +28,11 @@ class Category
      */
     private $projects;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $filterable;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
@@ -74,6 +79,18 @@ class Category
             $this->projects->removeElement($project);
             $project->removeCategory($this);
         }
+
+        return $this;
+    }
+
+    public function getFilterable(): ?bool
+    {
+        return $this->filterable;
+    }
+
+    public function setFilterable(bool $filterable): self
+    {
+        $this->filterable = $filterable;
 
         return $this;
     }
